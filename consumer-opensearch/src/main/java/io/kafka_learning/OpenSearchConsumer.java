@@ -8,12 +8,10 @@ import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.CredentialsProvider;
 import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.DefaultConnectionKeepAliveStrategy;
-import org.apache.kafka.clients.CommonClientConfigs;
-import org.apache.kafka.clients.consumer.ConsumerConfig;
+
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
-import org.apache.kafka.common.config.SaslConfigs;
 import org.apache.kafka.common.errors.WakeupException;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.opensearch.action.bulk.BulkRequest;
@@ -74,15 +72,15 @@ public class OpenSearchConsumer {
 
     private static KafkaConsumer<String, String> createKafkaConsumer() {
 
-        String group_id = "opensearch-consumer-group";
+        String groupId = "group-opensearch-consumer";
 
         Properties properties = new Properties();
         properties.setProperty("bootstrap.servers", "127.0.0.1:9092");
-        properties.setProperty("key.serializer", StringSerializer.class.getName());
-        properties.setProperty("value.serializer", StringSerializer.class.getName());
-        properties.setProperty("group.id.config", group_id);
-        properties.setProperty("auto.offset.reset.config", "latest");
-        properties.setProperty("enable.auto.commit.config", "false");
+        properties.setProperty("key.deserializer", StringDeserializer.class.getName());
+        properties.setProperty("value.deserializer", StringDeserializer.class.getName());
+        properties.setProperty("group.id", groupId);
+        properties.setProperty("auto.offset.reset", "latest");
+        properties.setProperty("enable.auto.commit", "false");
 
         KafkaConsumer<String, String> consumer = new KafkaConsumer<>(properties);
 
@@ -135,7 +133,7 @@ public class OpenSearchConsumer {
             }
 
             // we subscribe the consumer
-            consumer.subscribe(Collections.singleton("wikimedia.recentChange"));
+            consumer.subscribe(Collections.singleton("wikimedia.newChanges"));
 
             while (true) {
                 ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(3000));
@@ -155,7 +153,7 @@ public class OpenSearchConsumer {
 
                         bulkRequest.add(indexRequest);
                     } catch (Exception e) {
-
+                        log.error(String.valueOf(e));
                     }
                 }
 
