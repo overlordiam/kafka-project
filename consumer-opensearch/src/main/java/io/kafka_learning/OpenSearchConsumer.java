@@ -1,5 +1,4 @@
 package io.kafka_learning;
-import org.apache.kafka.common.serialization.StringSerializer;
 
 import com.google.gson.JsonParser;
 import org.apache.http.HttpHost;
@@ -36,12 +35,12 @@ import java.util.Properties;
 public class OpenSearchConsumer {
 
     public static RestHighLevelClient createOpenSearchClient() {
-//            String connString = "http://localhost:9200";
 
+        // remote opensearch url through bonsai
         String connString = "https://cfkx5f9nkr:rtqxm2byhh@kafka-opensearch-con-5174500068.us-east-1.bonsaisearch.net:443";
 
 
-        // we build a URI from the connection string
+        // build URI from the connection string
         RestHighLevelClient restHighLevelClient;
         URI connUri = URI.create(connString);
         // extract login information if it exists
@@ -74,6 +73,7 @@ public class OpenSearchConsumer {
 
         String groupId = "group-opensearch-consumer";
 
+        // custom properties for consumer
         Properties properties = new Properties();
         properties.setProperty("bootstrap.servers", "127.0.0.1:9092");
         properties.setProperty("key.deserializer", StringDeserializer.class.getName());
@@ -82,11 +82,13 @@ public class OpenSearchConsumer {
         properties.setProperty("auto.offset.reset", "latest");
         properties.setProperty("enable.auto.commit", "false");
 
+        // consumer object
         KafkaConsumer<String, String> consumer = new KafkaConsumer<>(properties);
 
         return consumer;
     }
 
+    // to prohibit redundancy and create idempotent consumers
     private static String extractId(String json) {
         return JsonParser.parseString(json)
                 .getAsJsonObject()
@@ -97,6 +99,7 @@ public class OpenSearchConsumer {
     }
 
     public static void main(String[] args) throws IOException {
+
 
         Logger log = LoggerFactory.getLogger(OpenSearchConsumer.class.getSimpleName());
 
@@ -125,6 +128,8 @@ public class OpenSearchConsumer {
             boolean indexExists = openSearchClient.indices().exists(new GetIndexRequest("wikimedia"), RequestOptions.DEFAULT);
 
             if (!indexExists) {
+
+                // create new index in opensearch if it does not exist
                 CreateIndexRequest createIndexRequest = new CreateIndexRequest("wikimedia");
                 openSearchClient.indices().create(createIndexRequest, RequestOptions.DEFAULT);
                 log.info("The Wikimedia Index has been created!");
@@ -140,6 +145,7 @@ public class OpenSearchConsumer {
                 int recordCount = records.count();
                 log.info("Received " + recordCount + " record(s)");
 
+                // create a bulk request object
                 BulkRequest bulkRequest = new BulkRequest();
 
                 for (ConsumerRecord<String, String> record : records) {
@@ -151,6 +157,7 @@ public class OpenSearchConsumer {
                                 .source(record.value(), XContentType.JSON)
                                 .id(id);
 
+                        // group the requests and send it together for efficiency
                         bulkRequest.add(indexRequest);
                     } catch (Exception e) {
                         log.error(String.valueOf(e));
