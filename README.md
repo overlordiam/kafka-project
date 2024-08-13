@@ -28,7 +28,7 @@ This project demonstrates an end-to-end data pipeline using Apache Kafka, Java, 
 - This configuration allows for parallel processing and reduces latency.
 
 #### Kafka Consumers:
--The application consists of 2 consumers reading from 3 partitions for increased throughput. Two consumers were enough to keep the lag to a trivial number.
+- The application consists of 2 consumers reading from 3 partitions for increased throughput. Two consumers were enough to keep the lag to a trivial number.
 
 #### OpenSearch:
 - OpenSearch is used as the database to store every record from the Kafka topic.
@@ -48,7 +48,7 @@ This project demonstrates an end-to-end data pipeline using Apache Kafka, Java, 
    ```bash
    zookeeper-server-start.sh ~/kafka_2.13-3.8.0/config/zookeeper.properties
 4) Run the following command in a terminal to start Kafka
-```bash
-kafka-server-start.sh ~/kafka_2.13-3.8.0/config/server.properties
+    ```bash
+    kafka-server-start.sh ~/kafka_2.13-3.8.0/config/server.properties
 5) Clone and download the code in from repository and run it in a Java IDE (preferably IntelliJ)
 6) Run the Consumer classes followed by the Producer class
