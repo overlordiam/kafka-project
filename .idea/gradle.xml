@@ -9,6 +9,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/consumer-opensearch" />
+            <option value="$PROJECT_DIR$/kafka-streams" />
             <option value="$PROJECT_DIR$/producer-wikimedia" />
           </set>
         </option>

@@ -6,9 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="7ad5de45-0e6a-4421-85b7-7d0c1271478c" name="Changes" comment="code adjustments">
       <changelist_data name="overlordiam" email="" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/consumer-opensearch/src/main/java/io/kafka_learning/OpenSearchConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/consumer-opensearch/src/main/java/io/kafka_learning/OpenSearchConsumer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producer-wikimedia/src/main/java/io/kafka_learning/ChangesProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/producer-wikimedia/src/main/java/io/kafka_learning/ChangesProducer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +65,7 @@
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_directory_selection": "C:/Users/suhu/src/kafka-project/consumer-opensearch/src/main/java/io/kafka_learning",
-    "onboarding.tips.debug.path": "C:/Users/suhu/src/kafka-project/consumer-opensearch/src/main/java/io/kafka-learning/Main.java",
+    "onboarding.tips.debug.path": "C:/Users/suhu/src/kafka-project/kafka-streams/src/main/java/io/kafka-learning/Main.java",
     "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle"
   }
 }]]></component>
@@ -74,7 +74,7 @@
       <recent name="C:\Users\suhu\src\kafka-project" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.io.kafka_learning.OpenSearchConsumer">
+  <component name="RunManager" selected="Application.ChangesProducer">
     <configuration name="ChangesProducer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="io.kafka_learning.ChangesProducer" />
       <module name="kafka-project.producer-wikimedia.main" />
@@ -88,9 +88,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="OpenSearchConsumer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="OpenSearchConsumer" />
+    <configuration name="OpenSearchConsumer2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="io.kafka_learning.OpenSearchConsumer2" />
       <module name="kafka-project.consumer-opensearch.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.kafka_learning.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -135,11 +141,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.io.kafka_learning.OpenSearchConsumer" />
         <item itemvalue="Application.ChangesProducer" />
+        <item itemvalue="Application.OpenSearchConsumer2" />
+        <item itemvalue="Application.io.kafka_learning.OpenSearchConsumer" />
         <item itemvalue="Docker.consumer-opensearch: Compose Deployment" />
         <item itemvalue="Docker.consumer-opensearch.opensearch: Compose Deployment" />
-        <item itemvalue="Application.OpenSearchConsumer" />
       </list>
     </recent_temporary>
   </component>
@@ -192,5 +198,16 @@
     <MESSAGE value="fix error in consumer code" />
     <MESSAGE value="code adjustments" />
     <option name="LAST_COMMIT_MESSAGE" value="code adjustments" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/kafka-streams/src/main/java/io/kafka-learning/WikimediaStreamsApp.java</url>
+          <line>13</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -6,3 +6,4 @@ pluginManagement {
 rootProject.name = "kafka-project"
 include("producer-wikimedia")
 include("consumer-opensearch")
+include("kafka-streams")
